@@ -46,6 +46,7 @@ function onConnection(clientSocket) {
 		switch (message.type) {
 			case 'usedAvatars'  : getUsedAvatarsRequest(clientSocket); break;
 			case 'registration' : getRegistrationRequest(clientSocket, message); break;
+			case null: break;
 			default : sendingMessages(message);
 		}
 	});

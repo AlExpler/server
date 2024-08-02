@@ -4,7 +4,7 @@ const WebSocket = require('ws');
 
 const usedPort = process.env.PORT || 9000;
 const socketServer = new WebSocket.Server({ port: usedPort });
-socketServer.on('connection', onConnection);
+socketServer.on('Connection', onConnection);
 
 class Client {
     constructor(socket, nickName, avatar) {
@@ -38,7 +38,7 @@ function sendingMessages(message) {
 }
 
 function onConnection(clientSocket) {
-	console.log('-get new connection-');
+	console.log('-New Connection-');
 
 	clientSocket.on('message', function (data) {
 		let message = JSON.parse(data);
@@ -58,11 +58,11 @@ function onConnection(clientSocket) {
     	sendingMessages(message);
 
 		clientsArr = clientsArr.filter(client => client.socket !== clientSocket);
-    	console.log('-client disconnected-');
+    	console.log('-Client Disconnected-');
   });
 }
 
-console.log(`SERVER START on port ${usedPort}`);
+console.log(`SERVER STARTED on port ${usedPort}`);
 
 function getUsedAvatarsRequest(clientSocket) {
 	let avatarsArr = clientsArr.map(client => client.avatar);
